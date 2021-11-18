@@ -78,7 +78,7 @@ class Computer
   # ...
 end
 
-class Computer
+class Computer_With_Method_Missing
   def initialize(computer_id, data_source)
     @id = computer_id
     @data_source = data_source
@@ -93,5 +93,12 @@ class Computer
     result = "#{name.capitalize}: #{info} ($#{price})"
     return "* #{result}" if price >= 100
     result
+  end
+
+  # override respond_to_missing? to keep your class from 
+  # lying about ghost methods when queried with respond_to?
+  def respond_to_missing?(method, include_private = false)
+    # the `or super` here is for methods that aren't ghosts
+    @data_source.respond_to?("get_#{method}_info") || super
   end
 end
