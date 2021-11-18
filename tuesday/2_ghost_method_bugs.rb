@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class BuggyRoulette
-  def method_missing(name, *args)
+  def method_missing(name, *_args)
     person = name.to_s.capitalize
     3.times do
-      number = rand(10) + 1
+      number = rand(1..10)
       puts "#{number}..."
     end
 
@@ -11,23 +13,23 @@ class BuggyRoulette
     # number is no longer in scope, so Ruby thinks it's
     # a method call as opposed to a variable
 
-    # this is clearly a problem since number isn't 
+    # this is clearly a problem since number isn't
     # defined, so method_missing will call itself
   end
 end
 
 class BetterRoulette
   def team_members
-    [
-      "Matthew", "Kim", "Dorie", "DDM",
-      "Donovan", "Graham", "Matt", "Joshua",
-      "Jacob", "Ivailo", "Evan",
+    %w[
+      Matthew Kim Dorie DDM
+      Donovan Graham Matt Joshua
+      Jacob Ivailo Evan
     ]
   end
 
   def method_missing(name, *args)
     person = name.to_s.capitalize
-    
+
     # this clause will make the previous bug noisy
     super unless team_members.include?(person)
 
@@ -35,11 +37,11 @@ class BetterRoulette
     number = 0
 
     3.times do
-      number = rand(10) + 1
+      number = rand(1..10)
       puts "#{number}..."
     end
 
-    number = rand(10) + 1
+    number = rand(1..10)
     "#{person} got a #{number}!"
   end
 end

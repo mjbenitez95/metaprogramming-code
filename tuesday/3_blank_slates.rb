@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ComputerWithMethodMissingBuggy
   # though this class implementation looks good,
   # it fails to handle cases where the method we're trying
@@ -9,12 +11,13 @@ class ComputerWithMethodMissingBuggy
   end
 
   def method_missing(name)
-    super if !@data_source.respond_to?("get_#{name}_info")
+    super unless @data_source.respond_to?("get_#{name}_info")
 
     info = @data_source.send("get_#{name}_info", @id)
     price = @data_source.send("get_#{name}_price", @id)
     result = "#{name.capitalize}: #{info} ($#{price})"
     return "* #{result}" if price >= 100
+
     result
   end
 
