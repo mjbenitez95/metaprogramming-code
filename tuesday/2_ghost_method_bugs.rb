@@ -16,5 +16,33 @@ class BuggyRoulette
   end
 end
 
-roulette = BuggyRoulette.new
+class BetterRoulette
+  def team_members
+    [
+      "Matthew", "Kim", "Dorie", "DDM",
+      "Donovan", "Graham", "Matt", "Joshua",
+      "Jacob", "Ivailo", "Evan",
+    ]
+  end
+
+  def method_missing(name, *args)
+    person = name.to_s.capitalize
+    
+    # this clause will make the previous bug noisy
+    super unless team_members.include?(person)
+
+    # and this definition will remove the bug
+    number = 0
+
+    3.times do
+      number = rand(10) + 1
+      puts "#{number}..."
+    end
+
+    number = rand(10) + 1
+    "#{person} got a #{number}!"
+  end
+end
+
+roulette = BetterRoulette.new
 puts roulette.Matthew
