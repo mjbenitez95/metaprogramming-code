@@ -1,4 +1,4 @@
-class Computer_With_Method_Missing_Buggy
+class ComputerWithMethodMissingBuggy
   # though this class implementation looks good,
   # it fails to handle cases where the method we're trying
   # to handle is a preexisting method (such as `display`)

@@ -31,7 +31,7 @@ class Computer
   # ...
 end
 
-class Computer_Dynamic_Dispatch
+class ComputerDynamicDispatch
   def initialize(computer_id, data_source)
     @id = computer_id
     @data_source = data_sources
@@ -60,7 +60,7 @@ class Computer_Dynamic_Dispatch
   # ...
 end
 
-class Computer_Dynamic_Methods
+class ComputerDynamicMethods
   def initialize(computer_id, data_source)
     @id = computer_id
     @data_source = data_sources
@@ -83,7 +83,7 @@ class Computer_Dynamic_Methods
   # ...
 end
 
-class Computer_Dynamic_Methods_By_Introspection
+class ComputerDynamicMethodsByIntrospection
   def initialize(computer_id, data_source)
     @id = computer_id
     @data_source = data_sources

@@ -78,7 +78,7 @@ class Computer
   # ...
 end
 
-class Computer_With_Method_Missing
+class ComputerWithMethodMissing
   def initialize(computer_id, data_source)
     @id = computer_id
     @data_source = data_source
