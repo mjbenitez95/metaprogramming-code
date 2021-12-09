@@ -8,6 +8,7 @@ module Kernel
   end
 end
 
+# ---
 def binding_example
   x = "Goodbye"
   yield("cruel")
@@ -37,7 +38,9 @@ end
 inside_block_binding
 puts "--"
 
+# ---
 # scope_change_example
+# ---
 v1 = 1
 class MyClass
   v2 = 2
@@ -56,7 +59,9 @@ obj.my_method # => v3
 puts local_variables # => v1, obj
 puts "--"
 
+# ---
 # global_variable_example
+# ---
 def a_scope
   $var = "some value"
 end
@@ -68,3 +73,7 @@ end
 a_scope
 puts another_scope # => "some value"
 puts "--"
+
+# ---
+# we can top level variable instead of global
+# ---
