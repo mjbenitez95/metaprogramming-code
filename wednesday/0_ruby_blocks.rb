@@ -16,6 +16,7 @@ end
 x = "Hello"
 # the block defined below picks up the x binding above
 puts binding_example {|y| "#{x}, #{y} world!" } # => "Hello, cruel world!"
+puts "--"
 
 def just_yield
   yield
@@ -34,3 +35,36 @@ def inside_block_binding
 end
 
 inside_block_binding
+puts "--"
+
+# scope_change_example
+v1 = 1
+class MyClass
+  v2 = 2
+  puts local_variables # => v2
+  
+  def my_method
+    v3 = 3
+    puts local_variables # => v3
+  end
+
+  puts local_variables # => v2
+end
+obj = MyClass.new # => v2, v2 (v1 will not show up in the inner scope)
+obj.my_method # => v3
+obj.my_method # => v3
+puts local_variables # => v1, obj
+puts "--"
+
+# global_variable_example
+def a_scope
+  $var = "some value"
+end
+
+def another_scope
+  $var
+end
+
+a_scope
+puts another_scope # => "some value"
+puts "--"
