@@ -8,3 +8,12 @@ module Kernel
   end
 end
 
+def binding_example
+  x = "Goodbye"
+  yield("cruel")
+end
+
+x = "Hello"
+# the block defined below picks up the x binding above
+puts binding_example {|y| "#{x}, #{y} world!" } # => "Hello, cruel world!"
+
