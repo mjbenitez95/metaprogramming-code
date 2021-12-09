@@ -75,5 +75,20 @@ puts another_scope # => "some value"
 puts "--"
 
 # ---
-# we can top level variable instead of global
+# we can use a top level variable instead of global
 # ---
+@var = "The top level variable!"
+
+def my_method
+  @var
+end
+
+class SomeClass
+  def my_method
+    @var = "Not the top level variable!"
+  end
+end
+
+some_class = SomeClass.new
+puts my_method, some_class.my_method
+puts "--"
